@@ -143,6 +143,21 @@ CREATE TABLE IF NOT EXISTS Product (
   REFERENCES Discount(DiscountId)
 );
 
+CREATE TABLE MeasurementUnitEquivalence (
+  MeasurementUnitEquivalenceId INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  ProductId INT UNSIGNED NOT NULL,
+  Equivalence INT UNSIGNED NOT NULL COMMENT 'Measurement unit id',
+  Quantity INT UNSIGNED NOT NULL,
+
+  CONSTRAINT MeasurementUnitEquivalenceProductFk
+  FOREIGN KEY (ProductId)
+  REFERENCES Product(ProductId),
+
+  CONSTRAINT MeasurementUnitEquivalenceMeasurementUnit
+  FOREIGN KEY (Equivalence)
+  REFERENCES MeasurementUnit(MeasurementUnitId)
+);
+
 CREATE TABLE ImageUrl (
   ImageUrlId INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
   ProductId INT UNSIGNED NOT NULL,
